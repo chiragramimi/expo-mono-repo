@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "name": "uman-mono-repo",
+  "description": "App Uman-Repo",
+  "workspaces": [
+    "apps/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "start:owner": "cd apps/owner && expo start",
+    "clean-build": "rm -rf shared/*/dist",
+    "clean-install": "rm -rf node_modules && yarn",
+    "lint-staged": "lint-staged",
+    "lint": "eslint ./shared --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
+  },
+  "repository": "https://github.com/checkmyguest/app-agent.git",
+  "author": "Chirag Rami <chirag.rami@mindinventory.com>",
+  "license": "MIT",
+  "dependencies ": {
+    "patch-package": "^8.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.1.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "eslint": "^8.52.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lerna": "^7.4.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  }
+}
