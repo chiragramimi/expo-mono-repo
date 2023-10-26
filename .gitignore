@@ -1,3 +1,4 @@
 node_modules/
 .expo/
 yarn-error.log
+shared/blueprint/tsconfig.tsbuildinfo
