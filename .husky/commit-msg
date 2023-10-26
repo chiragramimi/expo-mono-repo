@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "👁️👁️ Let me check, Are you following Git conventional commit messages?"
+npx --no -- commitlint --edit 
+
+echo "✅ Yes, You are following..."
+echo "================================================================"

@@ -1,9 +1,12 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run the "beautify" task
+echo "\n================================================================"
 echo "🤞🏻 We are checking lint and typescript..."
+echo "================================================================"
 
 lerna run --concurrency 1 --stream pre-commit --since HEAD --exclude-dependents 
 
-echo "✅ Passed lint"
+echo "================================================================"
+echo "✅ Yeah, lint and typscript are passed ✅"
+echo "================================================================"
