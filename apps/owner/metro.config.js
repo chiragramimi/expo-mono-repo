@@ -1,7 +1,12 @@
+// eslint-disable-next-line import/order
 const { getDefaultConfig } = require('@expo/metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
 defaultConfig.resolver.sourceExts.push('cjs', 'mjs');
+
+const path = require('path');
+
+const root = path.resolve(__dirname, '../..');
 
 module.exports = {
   ...defaultConfig,
