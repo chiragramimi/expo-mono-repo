@@ -2,8 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # Run the "beautify" task
-echo "Running Pre Commit..."
+echo "🤞🏻 We are checking lint and typescript..."
 
-lerna run --concurrency 1 --stream pre-commit --since HEAD --exclude-dependents
+lerna run --concurrency 1 --stream pre-commit --since HEAD --exclude-dependents 
 
 echo "✅ Passed lint"
