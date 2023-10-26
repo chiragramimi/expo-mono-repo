@@ -18,8 +18,10 @@
     "test:update": "jest -u",
     "test:ci": "jest --runInBand",
     "test:watch": "jest --watch",
+    "clean-install": "rimraf node_modules && yarn",
+    "pre-commit":"yarn lint --fix && yarn typescript",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "clean-install": "rimraf node_modules && yarn"
+    "typescript": "tsc --noEmit"
   },
   "author": "Chirag Rami",
   "license": "MIT",

@@ -1,10 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
-import { TextInput as RNTextInput } from "react-native";
+import React from 'react';
+import { TextInput as RNTextInput } from 'react-native';
 
-import { Field, FieldProps } from "formik";
+import { Field, FieldProps } from 'formik';
 
-import { Input } from "./Input";
-import { TextInputProps } from "./TextInputProps";
+import { Input } from './Input';
+import { TextInputProps } from './TextInputProps';
 
 export const TextInput = React.memo(
   React.forwardRef(
@@ -16,12 +16,12 @@ export const TextInput = React.memo(
             return (
               <Input
                 variant="standard"
-                onChangeText={(text) => {
+                onChangeText={text => {
                   form?.handleChange(name)(text);
                 }}
                 onBlur={form?.handleBlur(name)}
                 value={meta?.value}
-                error={meta?.error && meta?.touched ? meta?.error ?? "" : ""}
+                error={meta?.error && meta?.touched ? meta?.error ?? '' : ''}
                 ref={ref}
                 {...props}
               />

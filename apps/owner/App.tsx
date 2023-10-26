@@ -1,26 +1,21 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from '@shared/blueprint'
+import { StyleSheet, View } from 'react-native';
+
+import { Button, Text } from '@shared/blueprint';
 
 export default function App() {
   return (
-    <View style={styles.conta
-    iner}>
-
-
+    <View style={styles.container}>
       <Text>Open up App.js to start working on your app! OK</Text>
-      <Button title={"Hello"} backgroundColor={"white"} />
-      <StatusBar style="auto" />
+      <Button title={'Hello'} backgroundColor={'white'} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
   },
 });

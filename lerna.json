@@ -5,7 +5,6 @@
     "command": {
       "publish": {
         "allowBranch": "main",
-        "conventionalCommits": true,
         "createRelease": "github",
         "message": "chore: publish",
         "ignoreChanges": [

@@ -18,7 +18,6 @@
     "dist",
     "node_modules",
     "babel.config.ts",
-    "jest.config.ts",
     "src/index.d.ts",
     "src/**/__tests__",
     "src/**/*.usage.tsx"

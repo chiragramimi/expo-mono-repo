@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   ActivityIndicator,
   ColorValue,
@@ -8,20 +8,17 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
   ViewStyle,
-} from "react-native";
+} from 'react-native';
 
 import Animated, {
-  CurvedTransition,
   Easing,
-  FadingTransition,
   Layout,
-  SlideInLeft,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import { Text } from "../Text/Text";
+import { Text } from '../Text/Text';
 
 const AnimatedButtonComponent =
   Animated.createAnimatedComponent(TouchableOpacity);
@@ -67,7 +64,7 @@ interface Props {
 
 export type AnimatedTouchableOpacityProps = Omit<
   TouchableOpacityProps,
-  "onPressIn" | "onPressOut" | "style"
+  'onPressIn' | 'onPressOut' | 'style'
 > & {
   containerStyle?: StyleProp<ViewStyle>;
   transitionDuration?: number;
@@ -93,8 +90,7 @@ export const AnimatedTouchableOpacity = React.memo(
         onPressIn={() => (scaleValue.value = withSpring(0.9))}
         onPressOut={() => (scaleValue.value = withSpring(1))}
         activeOpacity={0.8}
-        {...props}
-      >
+        {...props}>
         {props.children}
       </AnimatedButtonComponent>
     );
@@ -103,23 +99,23 @@ export const AnimatedTouchableOpacity = React.memo(
 
 export const Button = React.memo((props: ButtonProps) => {
   const {
+    backgroundColor = '#ffffff',
+    borderColor = 'ffffff',
+    borderRadius = 0,
+    borderWidth = 0,
     buttonContainerStyle,
+    disableBackgroundColor = '#d9d9d9',
     isLoading,
     loaderStyle,
+    loadingColor = 'white',
+    requireShadow = false,
+    shadowStyle,
     showTitleOnLoading,
     title,
+    titleColor = 'black',
     titleContainerStyle,
     titleStyle,
     transitionDuration = 100,
-    titleColor = "black",
-    loadingColor = "white",
-    backgroundColor = "#ffffff",
-    disableBackgroundColor = "#d9d9d9",
-    borderColor = "ffffff",
-    borderWidth = 0,
-    borderRadius = 0,
-    requireShadow = false,
-    shadowStyle,
   } = props;
 
   const styles = buttonStyles();
@@ -131,8 +127,8 @@ export const Button = React.memo((props: ButtonProps) => {
         {
           backgroundColor: backgroundColor,
           borderColor: borderColor,
-          borderWidth: borderWidth,
           borderRadius: borderRadius,
+          borderWidth: borderWidth,
         },
         requireShadow && styles.shadow,
         shadowStyle,
@@ -141,12 +137,10 @@ export const Button = React.memo((props: ButtonProps) => {
           backgroundColor: disableBackgroundColor,
         },
       ]}
-      {...props}
-    >
+      {...props}>
       <Animated.View
         layout={Layout.duration(transitionDuration).easing(Easing.linear)}
-        style={[styles.titleContainer, titleContainerStyle]}
-      >
+        style={[styles.titleContainer, titleContainerStyle]}>
         {props.leftIcon}
         {showTitleOnLoading || !isLoading ? (
           <Text
@@ -156,13 +150,7 @@ export const Button = React.memo((props: ButtonProps) => {
                 ? loaderStyle.titleColor
                 : titleColor
             }
-            style={[
-              (props.leftIcon || props.rightIcon) && {
-                marginHorizontal: 8,
-              },
-              titleStyle,
-            ]}
-          >
+            style={titleStyle}>
             {title}
           </Text>
         ) : null}
@@ -185,23 +173,22 @@ export const Button = React.memo((props: ButtonProps) => {
 const buttonStyles = () =>
   StyleSheet.create({
     buttonContainer: {
-      alignItems: "center",
+      alignItems: 'center',
       paddingHorizontal: 25,
       paddingVertical: 10,
     },
     loader: {
       marginLeft: 10,
     },
-    titleContainer: {
-      alignItems: "center",
-      flexDirection: "row",
-      justifyContent: "center",
-    },
     shadow: {
-      shadowColor: "rgba(0, 0, 0, 0.1)",
-      shadowOpacity: 0.8,
       elevation: 6,
+      shadowOffset: { height: 13, width: 1 },
+      shadowOpacity: 0.8,
       shadowRadius: 15,
-      shadowOffset: { width: 1, height: 13 },
+    },
+    titleContainer: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
     },
   });

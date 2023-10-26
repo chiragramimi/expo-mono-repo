@@ -1,4 +1,4 @@
-import { Text, TextProps, TextPresets } from "./Text";
+import { Text, TextPresets, TextProps } from './Text';
 
 export { Text };
 export type { TextProps, TextPresets };

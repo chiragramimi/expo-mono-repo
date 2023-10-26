@@ -1,17 +1,15 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from 'react';
 import {
   NativeSyntheticEvent,
   Platform,
   TextInput as RNTextInput,
-  StyleProp,
   StyleSheet,
   TargetedEvent,
-  Text,
   TextInputFocusEventData,
   TextInputProps,
   View,
-  ViewStyle,
-} from "react-native";
+} from 'react-native';
+
 import Animated, {
   Easing,
   interpolate,
@@ -21,39 +19,41 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import { InputProps } from "./TextInputProps";
+} from 'react-native-reanimated';
+
+import { InputProps } from './TextInputProps';
+import { Text } from '../Text';
 
 const AnimatedTextInput = Animated.createAnimatedComponent(RNTextInput);
 
 export const Input = React.memo(
   React.forwardRef((props: InputProps, ref?: React.Ref<RNTextInput | null>) => {
     const {
-      variant = "filled",
-      label,
-      leftIcon,
-      rightIcon,
+      backgroundColor = 'white',
+      borderColor = 'black',
       error,
-      onMouseEnter,
-      onMouseLeave,
-      style,
-      inputContainerStyle,
-      inputStyle,
-      leftIconContainerStyle,
-      rightIconContainerStyle,
-      placeholder,
-      onFocus,
-      onBlur,
-      backgroundColor = "white",
-      onFocusBackgroundColor = "#e9e9e9",
-      borderColor = "black",
-      onFocusBorderColor = "#0c5fed",
-      onHoverBackgroundColor = "#e9e9e9",
-      labelColor = "black",
-      onFocusLabelColor = "#0c5fed",
       errorContainerStyle,
       errorStyle,
-      outlineGapColor = "white",
+      inputContainerStyle,
+      inputStyle,
+      label,
+      labelColor = 'black',
+      leftIcon,
+      leftIconContainerStyle,
+      onBlur,
+      onFocus,
+      onFocusBackgroundColor = '#e9e9e9',
+      onFocusBorderColor = '#0c5fed',
+      onFocusLabelColor = '#0c5fed',
+      onHoverBackgroundColor = '#e9e9e9',
+      onMouseEnter,
+      onMouseLeave,
+      outlineGapColor = 'white',
+      placeholder,
+      rightIcon,
+      rightIconContainerStyle,
+      style,
+      variant = 'filled',
       ...rest
     } = props;
 
@@ -65,7 +65,7 @@ export const Input = React.memo(
         onMouseEnter?.(event);
         hovered.value = true;
       },
-      [onMouseEnter]
+      [hovered, onMouseEnter]
     );
 
     const handleMouseLeave = useCallback(
@@ -73,7 +73,7 @@ export const Input = React.memo(
         onMouseLeave?.(event);
         hovered.value = false;
       },
-      [onMouseLeave]
+      [hovered, onMouseLeave]
     );
 
     const handleFocus = useCallback(
@@ -81,7 +81,7 @@ export const Input = React.memo(
         onFocus?.(event);
         focused.value = true;
       },
-      [onFocus]
+      [focused, onFocus]
     );
 
     const handleBlur = useCallback(
@@ -89,7 +89,7 @@ export const Input = React.memo(
         onBlur?.(event);
         focused.value = false;
       },
-      [onBlur]
+      [focused, onBlur]
     );
 
     const focusAnimation = useSharedValue(0);
@@ -118,58 +118,58 @@ export const Input = React.memo(
     const animatedInputContainerStyle = useAnimatedStyle(() => {
       return {
         backgroundColor:
-          variant === "filled"
+          variant === 'filled'
             ? focused.value
               ? onFocusBackgroundColor
               : hovered.value
               ? onHoverBackgroundColor
               : backgroundColor
-            : variant === "outlined"
+            : variant === 'outlined'
             ? backgroundColor
             : backgroundColor,
-        borderTopStartRadius: 4,
+        borderBottomEndRadius: variant !== 'standard' ? 4 : 0,
+        borderBottomStartRadius: variant !== 'standard' ? 4 : 0,
         borderTopEndRadius: 4,
-        borderBottomStartRadius: variant !== "standard" ? 4 : 0,
-        borderBottomEndRadius: variant !== "standard" ? 4 : 0,
+        borderTopStartRadius: 4,
       };
     }, [focused.value, hovered.value, variant]);
 
     const animatedInput = useAnimatedStyle(() => {
       return {
         fontSize: 16,
-        paddingTop: variant === "filled" && label ? 18 : 0,
-        minHeight: variant === "standard" ? 48 : 56,
-        paddingStart: leftIcon ? 12 : variant === "standard" ? 0 : 16,
-        paddingEnd: rightIcon ? 12 : variant === "standard" ? 0 : 16,
+        minHeight: variant === 'standard' ? 48 : 56,
+        paddingEnd: rightIcon ? 12 : variant === 'standard' ? 0 : 16,
+        paddingStart: leftIcon ? 12 : variant === 'standard' ? 0 : 16,
+        paddingTop: variant === 'filled' && label ? 18 : 0,
       };
     }, [variant, leftIcon, rightIcon]);
 
     const animatedLeading = useAnimatedStyle(() => {
       return {
-        marginStart: variant === "standard" ? 0 : 12,
-        marginVertical: variant === "standard" ? 12 : 16,
+        marginStart: variant === 'standard' ? 0 : 12,
+        marginVertical: variant === 'standard' ? 12 : 16,
       };
     }, [variant]);
 
     const animatedTrailing = useAnimatedStyle(() => {
       return {
-        marginEnd: variant === "standard" ? 0 : 12,
-        marginVertical: variant === "standard" ? 12 : 16,
+        marginEnd: variant === 'standard' ? 0 : 12,
+        marginVertical: variant === 'standard' ? 12 : 16,
       };
     }, [variant]);
 
     const animatedOutline = useAnimatedStyle(() => {
       return {
-        borderWidth: focused.value ? 2 : 1,
+        borderBottomEndRadius: 4,
+        borderBottomStartRadius: 4,
         borderColor: focused.value
           ? onFocusBorderColor
           : hovered.value
           ? onFocusBorderColor
           : borderColor,
-        borderTopStartRadius: 4,
         borderTopEndRadius: 4,
-        borderBottomStartRadius: 4,
-        borderBottomEndRadius: 4,
+        borderTopStartRadius: 4,
+        borderWidth: focused.value ? 2 : 1,
       };
     }, [focused.value, hovered.value]);
 
@@ -181,9 +181,9 @@ export const Input = React.memo(
 
     const animatedLabelContainer = useAnimatedStyle(() => {
       return {
+        height: variant === 'standard' ? 48 : 56,
         start:
-          variant === "standard" ? (leftIcon ? 36 : 0) : leftIcon ? 48 : 16,
-        height: variant === "standard" ? 48 : 56,
+          variant === 'standard' ? (leftIcon ? 36 : 0) : leftIcon ? 48 : 16,
       };
     }, [variant, leftIcon]);
 
@@ -202,7 +202,7 @@ export const Input = React.memo(
               [0, 1],
               [
                 0,
-                variant === "filled" ? -12 : variant === "outlined" ? -28 : -24,
+                variant === 'filled' ? -12 : variant === 'outlined' ? -28 : -24,
               ]
             ),
           },
@@ -212,46 +212,44 @@ export const Input = React.memo(
 
     const animatedPlaceholder = useAnimatedProps<TextInputProps>(() => {
       return {
-        placeholder: label ? (focused.value ? placeholder : "") : placeholder,
-        placeholderTextColor: "#d5d5",
+        placeholder: label ? (focused.value ? placeholder : '') : placeholder,
+        placeholderTextColor: '#d5d5',
       };
     }, [label, focused, placeholder]);
 
     const animatedUnderline = useAnimatedStyle(() => {
       return {
-        transform: [{ scaleX: focusAnimation.value }],
         backgroundColor: interpolateColor(
           focusAnimation.value,
           [0, 1],
           [borderColor, onFocusBorderColor]
         ),
+        transform: [{ scaleX: focusAnimation.value }],
       };
     }, [focusAnimation.value]);
 
     const animatedOutlineLabel = useAnimatedStyle(() => {
       return {
-        transform: [{ scaleX: activeAnimation.value }],
         backgroundColor: interpolateColor(
           activeAnimation.value,
           [0, 1],
           [backgroundColor, outlineGapColor]
         ),
+        transform: [{ scaleX: activeAnimation.value }],
       };
     }, [activeAnimation.value]);
 
     return (
-      <View style={[style]}>
+      <View style={style}>
         <Animated.View
           style={[
             styles.inputContainer,
             animatedInputContainerStyle,
             inputContainerStyle,
-          ]}
-        >
+          ]}>
           {leftIcon && (
             <Animated.View
-              style={[styles.leading, animatedLeading, leftIconContainerStyle]}
-            >
+              style={[styles.leading, animatedLeading, leftIconContainerStyle]}>
               {leftIcon}
             </Animated.View>
           )}
@@ -275,13 +273,12 @@ export const Input = React.memo(
                 styles.trailing,
                 animatedTrailing,
                 rightIconContainerStyle,
-              ]}
-            >
+              ]}>
               {rightIcon}
             </Animated.View>
           )}
 
-          {(variant === "filled" || variant === "standard") && (
+          {(variant === 'filled' || variant === 'standard') && (
             <>
               <View
                 style={[styles.underline, { backgroundColor: borderColor }]}
@@ -294,7 +291,7 @@ export const Input = React.memo(
             </>
           )}
 
-          {variant === "outlined" && (
+          {variant === 'outlined' && (
             <Animated.View
               style={[StyleSheet.absoluteFill, animatedOutline, styles.outline]}
               pointerEvents="none"
@@ -304,9 +301,8 @@ export const Input = React.memo(
           {label ? (
             <Animated.View
               style={[styles.labelContainer, animatedLabelContainer]}
-              pointerEvents="none"
-            >
-              {variant === "outlined" && (
+              pointerEvents="none">
+              {variant === 'outlined' && (
                 <Animated.View
                   style={[
                     styles.outlineLabelGap,
@@ -315,7 +311,7 @@ export const Input = React.memo(
                   ]}
                 />
               )}
-              <Animated.Text style={[animatedLabel]}>{label}</Animated.Text>
+              <Animated.Text style={animatedLabel}>{label}</Animated.Text>
             </Animated.View>
           ) : null}
         </Animated.View>
@@ -330,61 +326,60 @@ export const Input = React.memo(
 );
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: "row",
+  errorView: {
+    marginHorizontal: 16,
+    marginTop: 4,
+  },
+  helperText: {
+    fontSize: 14,
   },
   input: {
     flex: 1,
     ...Platform.select({
       web: {
-        outlineStyle: "none",
+        outlineStyle: 'none',
       },
     }),
   },
+  inputContainer: {
+    flexDirection: 'row',
+  },
+  labelContainer: {
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+  },
   leading: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 24,
+    alignItems: 'center',
     height: 24,
-  },
-  trailing: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
     width: 24,
-    height: 24,
-  },
-  underline: {
-    position: "absolute",
-    start: 0,
-    end: 0,
-    bottom: 0,
-    height: 1,
-  },
-  underlineFocused: {
-    position: "absolute",
-    start: 0,
-    end: 0,
-    bottom: 0,
-    height: 2,
   },
   outline: {},
   outlineLabelGap: {
-    position: "absolute",
-    top: 0,
-    start: -4,
     end: -4,
-    backgroundColor: "white",
-  },
-  labelContainer: {
-    justifyContent: "center",
-    position: "absolute",
+    position: 'absolute',
+    start: -4,
     top: 0,
   },
-  helperText: {
-    fontSize: 14,
+  trailing: {
+    alignItems: 'center',
+    height: 24,
+    justifyContent: 'center',
+    width: 24,
   },
-  errorView: {
-    marginTop: 4,
-    marginHorizontal: 16,
+  underline: {
+    bottom: 0,
+    end: 0,
+    height: 1,
+    position: 'absolute',
+    start: 0,
+  },
+  underlineFocused: {
+    bottom: 0,
+    end: 0,
+    height: 2,
+    position: 'absolute',
+    start: 0,
   },
 });

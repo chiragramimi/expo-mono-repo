@@ -4,11 +4,11 @@
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["shared/*/src"],
+      "@apps/*": ["apps/*"],
       "@shared/blueprint": ["shared/blueprint/src/*"],
       "@shared/utils": ["shared/utils/src/*"],
       "@shared/providers": ["shared/providers/src/*"],
     },
-    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "composite": true,

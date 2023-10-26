@@ -1,9 +1,9 @@
 import {
-  Button,
-  ButtonProps,
   AnimatedTouchableOpacity,
   AnimatedTouchableOpacityProps,
-} from "./Button";
+  Button,
+  ButtonProps,
+} from './Button';
 
 export { Button, AnimatedTouchableOpacity };
 export type { ButtonProps, AnimatedTouchableOpacityProps };

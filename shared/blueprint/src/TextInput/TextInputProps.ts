@@ -1,18 +1,17 @@
 import {
+  NativeSyntheticEvent,
+  TextInputProps as RNTextInputProps,
   StyleProp,
+  TargetedEvent,
   TextStyle,
   ViewStyle,
-  TextInputProps as RNTextInputProps,
-  TextInput,
-  NativeSyntheticEvent,
-  TargetedEvent,
-} from "react-native";
+} from 'react-native';
 
 export interface TextInputProps extends InputProps {
   name: string;
 }
 
-export type Variant = "filled" | "outlined" | "standard";
+export type Variant = 'filled' | 'outlined' | 'standard';
 
 export interface InputProps extends RNTextInputProps {
   /**
@@ -55,7 +54,7 @@ export interface InputProps extends RNTextInputProps {
   /**
    * The style of the text input.
    */
-  inputStyle?: RNTextInputProps["style"];
+  inputStyle?: RNTextInputProps['style'];
   /**
    * The style of the text input's leading element container.
    */
