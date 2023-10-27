@@ -34,7 +34,7 @@
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.70.2",
     "react-native-safe-area-context": "4.4.1",
-    "@shared/providers":"../providers/src"
+    "@shared/providers":"./shared/providers/src"
   },
   "peerDependencies": {
     "react": "*",

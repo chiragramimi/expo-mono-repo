@@ -1,22 +1,17 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Button } from '@shared/blueprint';
 
+import { useHomeScreen } from './useHomeScreen';
+
 const HomeScreen = () => {
+  const { homeScreenStyle } = useHomeScreen();
   return (
-    <View style={styles.container}>
+    <View style={homeScreenStyle.container}>
       <Button title={'HOME'} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
 
 export default HomeScreen;
