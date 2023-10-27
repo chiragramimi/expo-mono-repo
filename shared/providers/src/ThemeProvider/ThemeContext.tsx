@@ -8,7 +8,7 @@ import React, {
 import { useColorScheme } from 'react-native';
 
 import { color, Theme } from './color';
-import { AppThemeContextType } from './types';
+import { AppThemeContextType } from './ThemeContext.types';
 
 export const ThemeContext = createContext<AppThemeContextType | undefined>(
   undefined

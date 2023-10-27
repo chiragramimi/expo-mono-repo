@@ -1,12 +1,12 @@
-import { AnimatedTouchableOpacityProps } from './AnimatedTouchableOpacity/Props';
-import { TextProps } from './Text/Props';
+import { AnimatedTouchableOpacityProps } from './AnimatedTouchableOpacity/AnimatedTouchableOpacity.types';
+import { TextProps } from './Text/Text.types';
 import { Input } from './TextInput/Input';
-import { InputProps, TextInputProps } from './TextInput/Props';
 import { TextInput } from './TextInput/TextInput';
+import { InputProps, TextInputProps } from './TextInput/TextInput.types';
 
 export { TextInput, Input };
 export { Button } from './Button/Button';
-export { ButtonProps } from './Button/Props';
+export { ButtonProps } from './Button/Button.types';
 export { Text } from './Text/Text';
 export { AnimatedTouchableOpacity } from './AnimatedTouchableOpacity/AnimatedTouchableOpacity';
 

@@ -5,7 +5,7 @@ import {
   TextStyle,
 } from 'react-native';
 
-import { TextProps } from './Props';
+import { TextProps } from './Text.types';
 
 const BASE_TEXT: TextStyle = {
   fontSize: 12,

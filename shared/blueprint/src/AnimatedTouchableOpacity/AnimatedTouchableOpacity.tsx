@@ -9,7 +9,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
-import { AnimatedTouchableOpacityProps } from './Props';
+import { AnimatedTouchableOpacityProps } from './AnimatedTouchableOpacity.types';
 
 const AnimatedButtonComponent =
   Animated.createAnimatedComponent(TouchableOpacity);
