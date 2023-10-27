@@ -1,24 +1,18 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 
-import { Button, Text } from '@shared/blueprint';
+import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from '@shared/providers';
 
-export default function App() {
+import { AppNavigation } from './navigation/AppNavigation';
+
+const App = () => {
   return (
     <ThemeProvider>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app! OK</Text>
-        <Button title={'Hello'} />
-      </View>
+      <NavigationContainer>
+        <AppNavigation />
+      </NavigationContainer>
     </ThemeProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+export default App;
