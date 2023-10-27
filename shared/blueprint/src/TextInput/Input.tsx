@@ -21,8 +21,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import { InputProps } from './TextInputProps';
-import { Text } from '../Text';
+import { InputProps, Text } from '..';
 
 const AnimatedTextInput = Animated.createAnimatedComponent(RNTextInput);
 

@@ -3,8 +3,8 @@ import { TextInput as RNTextInput } from 'react-native';
 
 import { Field, FieldProps } from 'formik';
 
-import { Input } from './Input';
-import { TextInputProps } from './TextInputProps';
+import { TextInputProps } from './Props';
+import { Input } from '..';
 
 export const TextInput = React.memo(
   React.forwardRef(

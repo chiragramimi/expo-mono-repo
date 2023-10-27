@@ -1,15 +1,14 @@
 import React, { LegacyRef } from 'react';
 import {
-  ColorValue,
   // eslint-disable-next-line no-restricted-imports
   Text as RNText,
-  StyleProp,
-  TextProps as TextProperties,
   TextStyle,
 } from 'react-native';
 
+import { TextProps } from './Props';
+
 const BASE_TEXT: TextStyle = {
-  fontSize: 7,
+  fontSize: 12,
 };
 
 export const presets = {
@@ -60,15 +59,6 @@ export type TextPresets = keyof typeof presets;
 
 export type TextRef = LegacyRef<RNText>;
 export type RefText = InstanceType<typeof RNText>;
-
-export interface TextProps extends TextProperties {
-  /** Add additional styling for Text. */
-  style?: StyleProp<TextStyle>;
-  /** Select font and font weight */
-  preset?: TextPresets;
-  /** Set text color */
-  color?: string | ColorValue;
-}
 
 export type RefTextType = InstanceType<typeof RNText>;
 
