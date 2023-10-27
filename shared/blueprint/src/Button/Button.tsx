@@ -1,13 +1,16 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 
+import { useTheme } from '@shared/providers';
 import Animated, { Easing, Layout } from 'react-native-reanimated';
 
 import { AnimatedTouchableOpacity, ButtonProps, Text } from '..';
 
 export const Button = React.memo((props: ButtonProps) => {
+  const { color } = useTheme();
+
   const {
-    backgroundColor = '#ffffff',
+    backgroundColor = color.primaryColor,
     borderColor = '#ffffff',
     borderRadius = 0,
     borderWidth = 0,

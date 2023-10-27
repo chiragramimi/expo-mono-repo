@@ -48,7 +48,7 @@ yarn build
 To start the "owner" app, run the following command:
 
 ```bash
-yarn owner:start
+yarn start:owner
 ```
 
 ## Mono Repository Structure
